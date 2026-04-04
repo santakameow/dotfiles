@@ -16,3 +16,5 @@
 # You can also pretty-print and page through the documentation for configuration
 # options using:
 #     config nu --doc | nu-highlight | less -R
+$env.config.show_banner = false
+$env.config.buffer_editor = "nvim"
