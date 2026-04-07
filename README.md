@@ -1,6 +1,5 @@
 # sakanai dotfiles
 
-| | |
 |---|---|
 | **os** | arch linux |
 | **wm** | hyprland |
