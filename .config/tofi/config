@@ -1,0 +1,16 @@
+width = 400
+height = 200
+border-width = 2
+outline-width = 0
+padding-top = 8
+padding-bottom = 8
+padding-left = 8
+padding-right = 8
+corner-radius = 10
+
+font-size = 12
+
+background-color = #1e1e2e
+text-color = #cdd6f4
+selection-color = #f5c2e7
+border-color = #94e2d5
