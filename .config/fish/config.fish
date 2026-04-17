@@ -26,6 +26,7 @@ if status is-interactive
     alias lgit="lazygit"
     alias vim="nvim"
     alias vi="nvim"
+    alias ff="fastfetch"
 
     # environment
     set -gx EDITOR nvim
