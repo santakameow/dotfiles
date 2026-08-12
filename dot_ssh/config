@@ -1,0 +1,11 @@
+Host cumdev
+  HostName 64.188.69.19
+  User dev
+  ForwardAgent yes
+  ServerAliveInterval 30
+  ServerAliveCountMax 3
+
+Host pzserver
+  HostName 192.168.0.108
+  User administrator
+  ForwardAgent yes
