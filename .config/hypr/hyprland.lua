@@ -40,7 +40,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("~/.config/hypr/scripts/soloist.sh")
   hl.exec_cmd("pipewire")
   hl.exec_cmd("flameshot")
-  -- hl.exec_cmd("nm-applet")
+  hl.exec_cmd("nm-applet")
 end)
 
 
@@ -65,19 +65,30 @@ end)
 ----- PERMISSIONS -----
 -----------------------
 
+-- Keep KeePassXC windows out of screen captures (including OBS).
+hl.window_rule({
+    name = "keepassxc-private",
+    match = { class = "^org\\.keepassxc\\.KeePassXC$" },
+    no_screen_share = true,
+})
+
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
 -- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
 -- for security reasons
 
--- hl.config({
---   ecosystem = {
---     enforce_permissions = true,
---   },
--- })
+hl.config({
+  ecosystem = {
+    enforce_permissions = true,
+  },
+})
 
--- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
--- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
+hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
+hl.permission("/usr/(bin|local/bin)/flameshot", "screencopy", "allow")
+hl.permission("/usr/(bin|local/bin)/noctalia$", "screencopy", "allow")
+hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
 -- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
+
+hl.permission("^hl-virtual-keyboard-noctalia$", "keyboard", "allow")
 
 
 -----------------------
@@ -253,13 +264,14 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local ipc = "noctalia msg "
 
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("~/.config/hypr/scripts/shutdown.sh"))
 
 hl.bind(mainMod .. " + D",      hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
 hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 
 hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher hold"))
+hl.bind("ALT + SHIFT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher hold reverse"))
 
 
 -- Move focus with mainMod + arrow keys
@@ -343,6 +355,15 @@ hl.window_rule({
 -- })
 -- overlayLayerRule:set_enabled(false)
 
+-- Keep Flameshot floating while retaining the configured window animations.
+hl.window_rule({
+    name = "flameshot",
+    match = { class = "^(?i:flameshot|org\\.flameshot\\.Flameshot)$" },
+    float = true,
+    no_anim = false,
+    animation = "popin 87%",
+})
+
 hl.window_rule({
     match = { class = "dev.noctalia.Noctalia" },
     float = true,
@@ -368,6 +389,7 @@ local tearing_game_classes = {
     [[steam_app_22490]],       -- Fallout: New Vegas (enplczru)
     [[(?i:falloutnv\.exe)]],   -- Wine fallback class; verify when the game is running
     [[horizon]],
+    [[cs2]],
 }
 
 hl.window_rule({
