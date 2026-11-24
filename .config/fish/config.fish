@@ -1,5 +1,6 @@
 # Environment
 set -gx EDITOR nvim
+set -gx NIX_DAEMON_SOCKET_PATH /var/nix/daemon-socket/socket
 
 # User executables
 fish_add_path ~/.local/bin ~/.bun/bin ~/go/bin
