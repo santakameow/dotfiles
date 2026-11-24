@@ -9,6 +9,7 @@
         (modulesPath + "/installer/scan/not-detected.nix")
         (modulesPath + "/profiles/qemu-guest.nix")
         ./disk-config.nix
+        ./modules
     ];
     boot.loader.grub = {
         # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -19,22 +20,6 @@
 
     disko.devices.disk.main.device = "/dev/vda";
 
-    # workaround for vps
-    networking.useDHCP = false;
-    networking.useNetworkd = true;
-
-    systemd.network.networks."10-ens3" = {
-        matchConfig.Name = "ens3";
-        address = [
-            "152.234.245.97/32"
-            "2a12:bec4:1b50:aae::2/64"
-        ];
-        routes = [
-            { Destination = "0.0.0.0/0"; Gateway = "172.16.0.1"; GatewayOnLink = true; }
-            { Destination = "::/0"; Gateway = "2a12:bec4:1b50:aae::1"; }
-        ];
-    };
-    networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
     services.openssh.enable = true;
 
