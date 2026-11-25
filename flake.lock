@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "agenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792507013,
+        "narHash": "sha256-8tKjSQajD3mUND1GaAuaWTcuyUpgcGsh5V+l4ibzC7U=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "5e5b88a0c8e56f291a108c2fe9934054d9745b2e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -53,9 +73,31 @@
     },
     "root": {
       "inputs": {
+        "agenix": "agenix",
         "disko": "disko",
         "nixos-facter-modules": "nixos-facter-modules",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "sakanotifybot": "sakanotifybot"
+      }
+    },
+    "sakanotifybot": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795539583,
+        "narHash": "sha256-yUT4nEau52e3u2Jv/1usk2wSD7GBZdt/ICXuw+PvKvU=",
+        "owner": "santakameow",
+        "repo": "sakanotifybot",
+        "rev": "48463c247fff060903d25d20f00794039efcbcf2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "santakameow",
+        "repo": "sakanotifybot",
+        "type": "github"
       }
     }
   },
