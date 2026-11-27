@@ -20,7 +20,7 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "kitty -1"
-local fileManager = "nautilus"
+local fileManager = "luciole"
 local menu        = "rofi -show drun"
 local shell       = "noctalia"
 
@@ -368,6 +368,14 @@ hl.window_rule({
     match = { class = "dev.noctalia.Noctalia" },
     float = true,
     size = { 1080, 920 },
+})
+
+hl.window_rule({
+    name = "luciole",
+    match = { initial_class = [[^dev\.noctalia\.luciole$]] },
+    float = true,
+    size = { 1300, 850 },
+    center = true,
 })
 
 hl.layer_rule({
